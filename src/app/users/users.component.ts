@@ -388,13 +388,15 @@ let t=[]
           for (let m = 0; m < element.education.length; m++) {
           const element1 = element.education[m];
          // if(element1.qualification !=""){
-            t.push({'username':(m==0)?this.users[k].username:'"','dob':moment(this.users[k].dob).format('DD-MM-YYYY'),'email':this.users[k].email,'mobile':this.users[k].mobile,'course':this.users[k].course,'fee':this.users[k].fees,'qualification':(element1.qualification)?element1.qualification:null,'institution':(element1.institution)?element1.institution:null,'university':(element1.university)?element1.university:null,'yearofpass':(element1.yearofpass)?element1.yearofpass:null,'percentage':(element1.percentage)?element1.percentage:''})
-       //  }
+            t.push({'username':(m==0)?this.users[k].username:'"','dob':moment(this.users[k].dob).format('DD-MM-YYYY'),'email':this.users[k].email,'mobile':this.users[k].mobile,'course':this.users[k].course,'fee':this.users[k].fees,'qualification':(element1.qualification)?element1.qualification:'-','institution':(element1.institution)?element1.institution:'-','university':(element1.university)?element1.university:'-','yearofpass':(element1.yearofpass)?element1.yearofpass:'-','percentage':(element1.percentage)?element1.percentage:''})
+           
+       //  }default.png
         //          t.push({'username':this.users[k].username,'dob':this.users[k].dob,'email':this.users[k].email,'mobile':this.users[k].mobile,'course':this.users[k].course,'fee':this.users[k].fees,'qualification':(element1.qualification)?element1.qualification:null,'institution':(element1.institution)?element1.institution:null,'university':(element1.university)?element1.university:null,'yearofpass':(element1.yearofpass)?element1.yearofpass:null,'percentage':(element1.percentage)?element1.percentage:null})
         }
       }
     }else{
       t.push({'username':this.users[k].username,'dob':moment(this.users[k].dob).format('DD-MM-YYYY'),'email':this.users[k].email,'mobile':this.users[k].mobile,'course':this.users[k].course,'fee':this.users[k].fees,'qualification':'-','institution':'-','university':'-','yearofpass':'-','percentage':'-'})
+       
     }
     
   }
@@ -412,10 +414,27 @@ let t=[]
     {title: "Institution", dataKey: "institution"},
     {title: "University", dataKey: "university"},
     {title: "Year", dataKey: "yearofpass"},
-    {title: "%", dataKey: "percentage"},
+    {title: "%", dataKey: "percentage"} 
 	];
-  var rows = t
-  doc.autoTable(col, rows);
+  var rows = t;
+  var images = [];
+  var i = 0;
+  // doc.autoTable(col, rows);
+  doc.autoTable(col, rows, {
+    startY: 20,
+          //  afterPageContent: footer,
+           margin: { horizontal: 5 },
+           bodyStyles: { valign: 'top' },
+           styles: { overflow: 'linebreak' },
+           headerStyles: {
+               fillColor: [51, 122, 183],
+               textColor: [255],
+               halign: 'center'
+           },
+           //theme: 'striped'
+           theme: 'grid',
+          
+ });
   doc.save('users.pdf');
  }
 }

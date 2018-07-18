@@ -210,10 +210,10 @@
       <div class="card">
         <div class="card bg-primary text-white" style="height: 50px;">
           <p style="margin-top: 10px;"> List of Registered Users
-            <a (click)="openStdForm()" class="btn btn-danger btn-sm  float-right">
+           
+            <a (click)="openStdForm()" class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#exampleModal2">
               <i class="fa fa-plus" style="font-size:18px;color:white"></i>
-              <i class="fa fa-user" style="font-size:18px;color:white">
-              </i>
+              <i class="fa fa-user" style="font-size:18px;color:white"></i> 
             </a>
             <a (click)="excel()" class="btn btn-sm float-right">
               <i class="fa fa-file-excel-o" style="font-size:24px;color:white"></i>
@@ -638,6 +638,268 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
         <button type="button" (click)="delete(delete_data)" data-dismiss="modal" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Create Student Modal Popup-->
+<div class="modal fade " id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <div class="card ">
+            <div class=" card ">
+              <p> Registration Form
+                <!-- <a (click)="back()" class="btn btn-sm btn-danger btn float-right"> Back</a> -->
+              </p>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="onRegister()" [formGroup]="loginForm" enctype="multipart/form-data">
+                <div class="card text-center">
+                  <div class=" card bg-primary text-white">
+                    <p> Registration Form
+                      <!-- <a (click)="back()" class="btn btn-sm btn-danger btn float-right"> Back</a> -->
+                    </p>
+                  </div>
+                  <div class="card-body">
+              
+                <div class="border border-primary">
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label for="staticEmail" class=" col-form-label ">Full Name</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.username.errors && (loginForm.controls.username.dirty)),'has-success':!loginForm.controls.username.errors}">
+                      <input type="text" formControlName="username" class="form-control" id="username" required name="username">
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.username.errors?.required &&  (loginForm.controls.username.dirty || loginForm.controls.username.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+    
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1 labelalign">
+                      <label for="staticEmail" class="col-form-label">E-Mail</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.email.errors && (loginForm.controls.email.dirty)),'has-success':!loginForm.controls.email.errors}">
+                      <input type="email" email="true" formControlName="email" class="form-control" id="emailaddress" required name="email">
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.email.errors?.required &&  (loginForm.controls.email.dirty || loginForm.controls.email.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1 labelalign">
+                      <label for="staticEmail" class="col-form-label">Mobile No</label>
+                    </div>
+    
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.mobile.errors && (loginForm.controls.mobile.dirty)),'has-success':!loginForm.controls.mobile.errors}">
+                      <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 " formControlName="mobile" class="form-control"
+                        id="mobile" required name="mobile" minlength="10" maxlength="10">
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.mobile.errors?.required &&  (loginForm.controls.mobile.dirty || loginForm.controls.mobile.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label for="staticEmail" class="col-form-label labelalign">Password</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.password.errors && (loginForm.controls.password.dirty)),'has-success':!loginForm.controls.password.errors}">
+                      <input type="password" formControlName="password" class="form-control" id="password" required name="password">
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.password.errors?.required &&  (loginForm.controls.password.dirty || loginForm.controls.password.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+    
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label for="staticEmail" class="col-form-label labelalign">Cofirm Password</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.conf_password.errors && (loginForm.controls.conf_password.dirty)),'has-success':!loginForm.controls.conf_password.errors}">
+                      <input type="password" formControlName="conf_password" class="form-control" id="conf_password" required validateEqual="password"
+                        name="conf_password">
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.conf_password.errors?.required &&  (loginForm.controls.conf_password.dirty || loginForm.controls.conf_password.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label class="col-form-label labelalign">Date of Birth</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.dob.errors && (loginForm.controls.dob.dirty)),'has-success':!loginForm.controls.dob.errors}">
+                      <my-date-picker [options]="startDateOptions" placeholder="Select Date" class="form-control" required formControlName="dob"
+                        name="dob" (dateChanged)="ChangeDate($event);"></my-date-picker>
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.dob.errors?.required &&  (loginForm.controls.dob.dirty || loginForm.controls.dob.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+    
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label class="col-form-label labelalign">Course</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.course.errors && (loginForm.controls.course.dirty)),'has-success':!loginForm.controls.course.errors}">
+                      <input type="text" class="form-control" formControlName="course" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.course.errors?.required &&  (loginForm.controls.course.dirty || loginForm.controls.course.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+    
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label class="col-form-label labelalign">FEES</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.fee.errors && (loginForm.controls.fee.dirty)),'has-success':!loginForm.controls.fee.errors}">
+                      <input type="text" maxlength="6" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46 "
+                        class="form-control" formControlName="fee" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.fee.errors?.required &&  (loginForm.controls.fee.dirty || loginForm.controls.fee.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2 offset-1  labelalign">
+                      <label class="col-form-label labelalign">Photo</label>
+                    </div>
+                    <div class="col-sm-5" [ngClass]="{'has-error':(loginForm.controls.photo.errors && (loginForm.controls.photo.dirty)),'has-success':!loginForm.controls.photo.errors}">
+                      <input type="file" class="form-control" formControlName="photo" #myInput (change)="onChange_image($event,null)" single>
+                    </div>
+                    <div class="col-sm-4">
+                      <a *ngIf="loginForm.controls.photo.errors?.required &&  (loginForm.controls.photo.dirty || loginForm.controls.photo.touched)  "
+                        style="color: red">This is field is required</a>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                </div>
+                <div class="card text-center">
+                  <div class=" card bg-primary text-white">
+                    <p> Registration Form
+                      <!-- <a (click)="back()" class="btn btn-sm btn-danger btn float-right"> Back</a> -->
+                    </p>
+                  </div>
+                  <div class="card-body">
+                <div class="border border-primary">
+                  <div formArrayName="itemRows">
+                    <!-- Check the correct way to iterate your form array -->
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label>Qualification</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label>Institution</label>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>University</label>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label>Year of Pass</label>
+                        </div>
+                      </div>
+                      <div class="col-md-1">
+                        <div class="form-group">
+                          <label>%</label>
+                        </div>
+                      </div>
+    
+                    </div>
+                    <div *ngFor="let itemrow of loginForm.controls.itemRows.controls; let i=index" [formGroupName]="i">
+                      <!-- <h4>Education - {{ i + 1 }}</h4> -->
+                      <div class="row form-group">
+                        <div class="col-md-2">
+    
+                          <!-- <label>Qualification</label> -->
+                          <input type="text" onkeypress="return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 46 || event.charCode == 32) "
+                            formControlName="qualification" required class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                          <div>
+                            <!-- <label>Institution</label>   -->
+                            <input type="text" onkeypress="return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 46 || event.charCode == 32) "
+                              formControlName="institution" required class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div>
+                            <!-- <label>Board/University</label> -->
+                            <input type="text" onkeypress="return (event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 46 || event.charCode == 32) "
+                              formControlName="university" required class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div>
+                            <!-- <label>Year of Pass</label> -->
+                            <input type="text" min="2010" maxlength="4" required onkeypress="return event.charCode >= 48 && event.charCode <= 57 " formControlName="yearofpass"
+                              class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-md-1">
+                          <div>
+                            <!-- <label>%</label> -->
+                            <input type="text" formControlName="percentage" required onkeypress="return event.charCode >= 48 && event.charCode <= 57 "
+                              class="form-control">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <button *ngIf="loginForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i,'reg')" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i>
+                          </button>
+                          <button *ngIf="loginForm.controls.itemRows.controls.length == i+1 " type="button" (click)="addEduinfo('reg')" class="btn btn-success btn-sm">
+                            <i class="fa fa-plus" style="font-size:18px;color:white"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+    
+                  </div>
+                </div>
+                </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <button type="submit" [disabled]="!loginForm.valid" class="float-right btn btn-primary">Register</button>
+                  </div>
+                </div>
+              </form>
+    
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
