@@ -1,0 +1,63 @@
+<app-header>
+
+</app-header>
+<div class="container">
+
+  <div class="row" style="margin-top: 50px">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-5">
+      <div class="card text-center">
+        <div class="card-header  card bg-primary text-white">
+          Login Here
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+           
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-4 col-form-label labelalign">E-Mail</label>
+              <input type="text" class="form-control col-sm-8" id="emailaddress" required [(ngModel)]="model.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                #email="ngModel">
+              <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                <div [hidden]="!email.hasError('required')">Email is required</div>
+                <div [hidden]="!email.hasError('pattern')">Email format should be
+                  <small>
+                    <b>joe@abc.com</b>
+                  </small>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-4 col-form-label labelalign">Password</label>
+
+              <input type="password" class="form-control col-sm-8" id="password" required [(ngModel)]="model.password" name="password"
+                #password="ngModel">
+              <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                Password is required
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <div class="col-sm-6">
+                <label for="inputPassword" class="">
+                  <a type="text" (click)="register()" class="col-form-label">Not Registered ? Register</a>
+                </label>
+                <br>
+                <label for="inputPassword" class="">
+                  <a type="text" (click)="forgetpassword()" class="col-form-label">Forget Password ? </a>
+                </label>
+              </div>
+              <div class="col-sm-6">
+                <button type="submit" class="float-right btn btn-primary" [disabled]="!loginForm.form.valid">Submit</button>
+              </div>
+          </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

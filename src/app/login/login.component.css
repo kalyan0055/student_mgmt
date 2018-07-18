@@ -1,0 +1,12 @@
+.labelalign{
+    text-align: right
+}
+.ng-valid[required], .ng-valid.required  {
+    border: 2px solid #42A948; /* green */
+  }
+  .ng-invalid:not(form)  {
+    border: 1px solid #a94442; /* red */
+  }
+a{
+    cursor: pointer;
+}
