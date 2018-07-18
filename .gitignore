@@ -6,8 +6,8 @@
 /out-tsc
 
 # dependencies
-/node_modules
-
+.gitignore
+node_modules
 # IDEs and editors
 /.idea
 .project
